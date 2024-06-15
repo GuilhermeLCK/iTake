@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import data from "../../Services/Produtos";
 import "./styleHome.scss";
 import Logo from "../../assets/new-logo-light.png";
+import Kds from "../../Components/Kds/Kds";
+import { FaAnglesRight } from "react-icons/fa6";
 
 function Index() {
   const [pedidos, setPedidos] = useState(data);
@@ -17,6 +19,12 @@ function Index() {
     );
   };
 
+  const situacoes = [
+    "Pendentes",
+    "Em produção",
+    "Finalizados",
+    "Ultimos pedidos",
+  ];
   return (
     <>
       <div className="container-iTake-home">
@@ -35,96 +43,20 @@ function Index() {
         </header>
 
         <div className="container-iTake-pedidos">
-          <div className="container-iTake-pedidos-card" id="color1">
-            <div className="container-iTake-pedidos-card-title-fixed">
-              <h2>Pedidos</h2>
-              <h2>{pedidos.length}</h2>
-            </div>
-
-            <div className="container-iTake-pedidos-card-maps">
-              {pedidos
-                ?.filter((pedido) => pedido.SituacaoPedido === 1)
-                ?.map((pedido, index) => (
-                  <div
-                    key={index}
-                    className="container-iTake-pedidos-card-maps-section"
-                  >
-                    <div>
-                      <h2>Pedido #{pedido.Codigo}</h2>
-                      <h2>{pedido.EmissaoFormatado}</h2>
-                    </div>
-                    <div>
-                      <h2>
-                        {pedido.Qtde}x {pedido.ItemNome}
-                      </h2>
-                    </div>
-
-                    <button onClick={() => moverPedido(pedido.Codigo, 2)}>
-                      Avançar
-                    </button>
-                  </div>
-                ))}
-            </div>
-          </div>
-          <div className="container-iTake-pedidos-card" id="color2">
-            <div className="container-iTake-pedidos-card-title-fixed">
-              <h2>Em Produção</h2>
-              <h2>{pedidos.length}</h2>
-            </div>
-
-            {pedidos
-              .filter((pedido) => pedido.SituacaoPedido === 2)
-              .map((pedido, index) => (
-                <li key={index}>
-                  {pedido.ItemNome}
-                  <button onClick={() => moverPedido(pedido.Codigo, 3)}>
-                    Avançar
-                  </button>
-                  <button onClick={() => moverPedido(pedido.Codigo, 1)}>
-                    Retornar
-                  </button>
-                </li>
-              ))}
-          </div>
-          <div className="container-iTake-pedidos-card" id="color3">
-            <div className="container-iTake-pedidos-card-title-fixed">
-              <h2>Finalizados</h2>
-              <h2>{pedidos.length}</h2>
-            </div>
-
-            {pedidos
-              .filter((pedido) => pedido.SituacaoPedido === 3)
-              .map((pedido, index) => (
-                <li key={index}>
-                  {pedido.ItemNome}
-
-                  <button onClick={() => moverPedido(pedido.Codigo, 2)}>
-                    Retornar
-                  </button>
-                  <button onClick={() => moverPedido(pedido.Codigo, 4)}>
-                    Avançar
-                  </button>
-                </li>
-              ))}
-          </div>
-
-          <div className="container-iTake-pedidos-card" id="color4">
-            <div className="container-iTake-pedidos-card-title-fixed">
-              <h2>Ultimos</h2>
-              <h2>{pedidos.length}</h2>
-            </div>
-
-            {pedidos
-              .filter((pedido) => pedido.SituacaoPedido === 4)
-              .map((pedido, index) => (
-                <li key={index}>
-                  {pedido.ItemNome}
-                  <button onClick={() => moverPedido(pedido.Codigo, 3)}>
-                    Retornar
-                  </button>
-                </li>
-              ))}
-          </div>
+          {situacoes.map((title, index) => {
+            return (
+              <>
+                <Kds
+                  indexCard={index}
+                  title={title}
+                  quantidadeDePedidos={pedidos.length}
+                  pedidosArray={pedidos}
+                  enumSituacao={index + 1}
+                  moverPedido={moverPedido}
+                />
+              </>
+            );
+          })}
         </div>
       </div>
     </>

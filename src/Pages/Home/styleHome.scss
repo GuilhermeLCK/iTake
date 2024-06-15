@@ -1,9 +1,11 @@
+//Home page
 .container-iTake-home {
   width: 100%;
   height: 100vh;
   overflow: hidden;
 }
 
+// Cabeçalho
 .container-iTake-header {
   width: 100%;
   height: 60px;
@@ -46,59 +48,11 @@
   }
 }
 
+// Container dos pedidos
 .container-iTake-pedidos {
   width: 100%;
   display: flex;
-}
-
-.container-iTake-pedidos-card {
-  width: 25%;
-  background-color: coral;
-  position: relative;
-}
-
-.container-iTake-pedidos-card-title-fixed {
-  width: 100%;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 99;
-
-  h2 {
-    padding-inline: 10px;
-    font-size: 18px;
-    font-weight: 400;
-    color: #ffffffee;
-  }
-}
-
-.container-iTake-pedidos-card-maps {
-  overflow: auto;
-  height: 90vh;
-  padding-inline: 10px;
-  padding-block: 10px;
-  padding-bottom: 50px;
-  scrollbar-width: none; /* Largura da barra de rolagem (pode ser 'thin', 'auto' ou 'none') */
-  scrollbar-color: rgba(255, 255, 255, 0) rgba(0, 0, 0, 0.1); /* Cor da barra de rolagem */
-}
-
-.container-iTake-pedidos-card-maps-section {
-  width: 100%;
-  padding: 5px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  background-color: rgb(255, 255, 255);
-}
-
-#color2 {
-  background-color: #008cff;
-}
-
-#color3 {
-  background-color: #00ff80;
-}
-
-#color4 {
-  background-color: #a10051;
+  min-height: calc(100% - 60px);
+  padding: 15px;
+  gap: 5px;
 }
